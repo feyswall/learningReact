@@ -4,8 +4,24 @@ class Counter extends Component {
   state = {
     counter: 1,
     image: "https://picsum.photos/500",
-    tags: ["tag1", "tag2", "tag3"],
-  };
+    tags: ["tag1"],
+    };
+    
+    renderTagsHelper() {
+        if (this.state.tags.length > 0) {
+             return <ul>
+                {this.state.tags.map((tag) => {
+                  return <li key={tag}>{tag}</li>;
+                })}
+              </ul>;
+        };
+        return (
+          <div>
+            <span className="text-danger">No tags found in here</span>
+          </div>
+        );
+    }
+
   render() {
     return (
       <React.Fragment>
@@ -14,11 +30,7 @@ class Counter extends Component {
             <b>{this.formatCount()}</b>
           </span>
           <button className="btn btn-primary">increment</button>
-        <ul>
-                    {this.state.tags.map( tag => {
-                        return <li key={tag}>{tag}</li>
-                    })}           
-        </ul>
+            { this.renderTagsHelper() }
             </div>
         
       </React.Fragment>
