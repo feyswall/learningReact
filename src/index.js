@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import Counter from './components/Counter';
 import 'bootstrap/dist/css/bootstrap.css';
+import 'font-awesome/css/font-awesome.css';
 import Navigation from './components/Navigation';
+import Movies from './components/Movies';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Counter />
+    <Movies />
   </React.StrictMode>
 );
 

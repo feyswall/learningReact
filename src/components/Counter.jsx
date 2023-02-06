@@ -45,7 +45,7 @@ class Counter extends Component {
   }
 
   getBadgeClasses() {
-    let classes = "p-4 text-";
+    let classes = "m-4 badge badge-";
     classes += this.state.counter == 0 ? "warning" : "success";
     return classes;
   }
