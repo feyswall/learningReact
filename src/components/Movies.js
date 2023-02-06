@@ -32,7 +32,8 @@ class Movies extends Component {
         });
     }
 
-  render() {
+    render() {
+              if( this.state.movieLists.length < 1 ) return <h1>There is no movies in here</h1>
     return (
       <table class="table">
         <thead>
