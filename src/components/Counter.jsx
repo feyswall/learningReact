@@ -23,7 +23,9 @@ class Counter extends Component {
     }
     
     handleIncement = () => {
-        console.log("continue", this)
+        this.setState({
+            counter: this.state.counter + 1,
+        })
     }
 
   render() {
