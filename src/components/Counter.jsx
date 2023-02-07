@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    value: this.props.value,
+    counter: this.props.value,
     image: "https://picsum.photos/500",
     tags: ["tag1"],
     };
@@ -25,19 +25,22 @@ class Counter extends Component {
     handleIncement = (value) => {
         console.log( value )
         this.setState({
-            counter: this.state.value + 1,
+            counter: this.state.counter + 1,
         })
     }
 
   render() {
+    console.log( this.props );
     return (
       <React.Fragment>
-        <div className="container m-4">
+        <div className="container">
+          {/* This is highly used in complex elements eg dialog box */}
+          { this.props.children }
           <span className={this.getBadgeClasses()}>
             <b>{this.formatCount()}</b>
           </span>
-                <button onClick={() => { this.handleIncement('4') } } className="btn btn-primary">increment</button>
-            </div>
+          <button onClick={() => { this.handleIncement('4') } } className="btn btn-primary">increment</button>
+        </div>
         
       </React.Fragment>
     );
@@ -45,12 +48,12 @@ class Counter extends Component {
 
   getBadgeClasses() {
     let classes = "m-4 badge badge-";
-    classes += this.state.value == 0 ? "warning" : "success";
+    classes += this.state.counter == 0 ? "warning" : "success";
     return classes;
   }
 
   formatCount() {
-    let { value: counter } = this.state;
+    let { counter } = this.state;
     return counter === 0 ? "Zero" : counter;
   }
 }
