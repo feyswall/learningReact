@@ -37,7 +37,6 @@ class Counter extends Component {
             <b>{this.formatCount()}</b>
           </span>
                 <button onClick={() => { this.handleIncement('4') } } className="btn btn-primary">increment</button>
-            { this.renderTagsHelper() }
             </div>
         
       </React.Fragment>
