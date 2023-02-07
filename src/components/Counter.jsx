@@ -59,3 +59,5 @@ class Counter extends Component {
 }
 
 export default Counter;
+
+/** ADD REACT DEVELOPER EXTENSION IN YOUR BROWSER FOR BETTER RESULTS */
