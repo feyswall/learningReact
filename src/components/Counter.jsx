@@ -1,53 +1,28 @@
 import React, { Component } from "react";
 
 class Counter extends Component {
-  state = {
-    counter: this.props.value,
-    image: "https://picsum.photos/500",
-    tags: ["tag1"],
-    };
-    
-    renderTagsHelper() {
-        if (this.state.tags.length > 0) {
-             return <ul>
-                {this.state.tags.map((tag) => {
-                  return <li key={tag}>{tag}</li>;
-                })}
-              </ul>;
-        };
-        return (
-          <div>
-            <span className="text-danger">No tags found in here</span>
-          </div>
-        );
-    }
-    
-    handleIncement = (value) => {
-        console.log( value )
-        this.setState({
-            counter: this.state.counter + 1,
-        })
-    }
-
   render() {
-    console.log( this.props.counter.id );
     return (
       <React.Fragment>
         <div className="container">
           {/* This is highly used in complex elements eg dialog box */}
           <span className={this.getBadgeClasses()}>
-            <b>{this.formatCount()}</b>
+            <b>{this.props.formatCount(this.props.counter)}</b>
           </span>
           <button
-            onClick={() => {
-              this.handleIncement("4");
-            }}
+            onClick={() => this.props.handleIncement(this.props.counter)}
             className="btn btn-primary"
           >
             increment
           </button>
           <button
-            onClick={() => this.props.handleDelete(this.props.counter) }
+            onClick={() => this.props.handleDecrement(this.props.counter)}
+            className="btn btn-dark ml-1"
+          >
+            increment
+          </button>
+          <button
+            onClick={() => this.props.handleDelete(this.props.counter)}
             className="btn btn-danger ml-1"
           >
             delete
@@ -60,14 +35,10 @@ class Counter extends Component {
 
   getBadgeClasses() {
     let classes = "m-4 badge badge-";
-    classes += this.state.counter == 0 ? "warning" : "success";
+    classes += ((this.props.counter.value) <= 0 ) ? "danger" : "warning";
     return classes;
   }
 
-  formatCount() {
-    let { counter } = this.state;
-    return counter === 0 ? "Zero" : counter;
-  }
 }
 
 export default Counter;
