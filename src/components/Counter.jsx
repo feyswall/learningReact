@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    counter: 1,
+    value: this.props.value,
     image: "https://picsum.photos/500",
     tags: ["tag1"],
     };
@@ -25,7 +25,7 @@ class Counter extends Component {
     handleIncement = (value) => {
         console.log( value )
         this.setState({
-            counter: this.state.counter + 1,
+            counter: this.state.value + 1,
         })
     }
 
@@ -45,12 +45,12 @@ class Counter extends Component {
 
   getBadgeClasses() {
     let classes = "m-4 badge badge-";
-    classes += this.state.counter == 0 ? "warning" : "success";
+    classes += this.state.value == 0 ? "warning" : "success";
     return classes;
   }
 
   formatCount() {
-    let { counter } = this.state;
+    let { value: counter } = this.state;
     return counter === 0 ? "Zero" : counter;
   }
 }
