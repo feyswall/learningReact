@@ -7,12 +7,13 @@ import 'font-awesome/css/font-awesome.css';
 import Navigation from './components/Navigation';
 import Movies from './components/Movies';
 import Counters from './components/Counters';
+import App from './app';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Counters />
+    <App />
   </React.StrictMode>
 );
 

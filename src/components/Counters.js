@@ -2,79 +2,19 @@ import React, { Component } from "react";
 import Counter from "./Counter";
 
 class Counters extends Component {
-  state = {
-    counters: [
-      { id: 1, value: 3 },
-      { id: 2, value: 4 },
-      { id: 3, value: 1 },
-      { id: 4, value: 3 },
-      { id: 5, value: -1 },
-    ],
-  };
-
-  handleDelete = (counter) => {
-    let CopyCounter = this.state.counters;
-    let filteredCounters = CopyCounter.filter((elem) => elem.id != counter.id);
-    this.setState({ counters: filteredCounters });
-  };
-
-  formatCount = (counter) => {
-    let { counters } = this.state;
-    let copyCounters = counters;
-    let elem = copyCounters.find((elem) => elem.id == counter.id);
-    return elem.value > 0 ? elem.value : `zero ${elem.value}`;
-  };
-
-    handleIncement = (counter) => {
-        let copyCounters = [...this.state.counters];
-        let index = copyCounters.indexOf(counter);
-        copyCounters[index] = {...counter}
-        copyCounters[index].value += 1;
-        this.setState({
-            counters: copyCounters
-        })
-    }
-    
-
-    handleDecrement = (counter) => {
-        let { counters } = this.state;
-        let copyCounters = counters;
-        for (var g = 0; g < copyCounters.length; g++) {
-            let lastCopy = copyCounters[g];
-            if (counter.id == lastCopy.id) {
-                lastCopy.value -= 1;
-            }
-            copyCounters[g] = lastCopy;
-        }
-        this.setState({
-            counters: copyCounters
-        })
-    }
-
-    handleReset = () => {
-        let copyCounters = [...this.state.counters];
-        console.log(copyCounters);
-        for (let g = 0; g < copyCounters.length; g++){
-            let objectCopy = { ...copyCounters[g] };
-            objectCopy.value = 0;
-            copyCounters[g] = objectCopy;
-        }
-        this.setState({ counters: copyCounters });
-    }
-
   render() {
     return (
         <div className="container m-2">
-            <button className="btn btn-primary" onClick={this.handleReset}>reset</button>
-        {this.state.counters.map((counter) => (
+            <button className="btn btn-primary" onClick={this.props.handleReset}>reset</button>
+        {this.props.counters.map((counter) => (
           <Counter
             key={counter.id}
             value={counter.value}
-                handleDelete={this.handleDelete}
-                handleIncement={this.handleIncement}
-                handleDecrement={this.handleDecrement}
+                handleDelete={() => this.props.handleDelete(counter)}
+                handleIncement={() => this.props.handleIncement(counter)}
+                handleDecrement={() => this.props.handleDecrement(counter)}
             counter={counter}
-            formatCount={this.formatCount}
+            formatCount={this.props.formatCount}
           />
         ))}
       </div>
