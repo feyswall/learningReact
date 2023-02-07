@@ -4,24 +4,31 @@ import Counter from "./Counter";
 class Counters extends Component {
   state = {
     counters: [
-      { id: 0, value: 3 },
-      { id: 0, value: 4 },
-      { id: 0, value: 1 },
-      { id: 0, value: 3 },
-      { id: 0, value: -1 },
+      { id: 1, value: 3 },
+      { id: 2, value: 4 },
+      { id: 3, value: 1 },
+      { id: 4, value: 3 },
+      { id: 5, value: -1 },
     ],
-  };
+};
+    
+    
+  handleDelete(counter) {
+    let CopyCounter = this.state.counters;
+      let filteredCounters = CopyCounter.filter(elem => elem.id != counter.id);
+      this.setState({ counters: filteredCounters });
+  }
+
+
   render() {
     return (
       <div>
-        {this.state.counters.map((counter) => (
-          <Counter
-            key={counter.id}
-            value={counter.value}
-            selected="true"
-            >
-                <h6>Counter # { counter.id }</h6>
-          </Counter>
+            {this.state.counters.map((counter) => (
+                <Counter
+                    key={counter.id}
+                    value={counter.value}
+                    handleDelete={() => this.handleDelete(counter)}
+            / >
         ))}
       </div>
     );

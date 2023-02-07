@@ -35,16 +35,28 @@ class Counter extends Component {
       <React.Fragment>
         <div className="container">
           {/* This is highly used in complex elements eg dialog box */}
-          { this.props.children }
           <span className={this.getBadgeClasses()}>
             <b>{this.formatCount()}</b>
           </span>
-          <button onClick={() => { this.handleIncement('4') } } className="btn btn-primary">increment</button>
+          <button
+            onClick={() => {
+              this.handleIncement("4");
+            }}
+            className="btn btn-primary"
+          >
+            increment
+          </button>
+          <button
+            onClick={ this.props.handleDelete }
+            className="btn btn-danger ml-1"
+          >
+            delete
+          </button>
         </div>
-        
       </React.Fragment>
     );
   }
+
 
   getBadgeClasses() {
     let classes = "m-4 badge badge-";
@@ -61,3 +73,9 @@ class Counter extends Component {
 export default Counter;
 
 /** ADD REACT DEVELOPER EXTENSION IN YOUR BROWSER FOR BETTER RESULTS */
+
+
+/** Differences btn props and state are props are immutable while 
+ * state are mutable also props come from outside a class while state
+ * is private withing a class
+ */
