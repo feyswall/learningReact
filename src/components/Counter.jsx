@@ -30,7 +30,7 @@ class Counter extends Component {
     }
 
   render() {
-    console.log( this.props );
+    console.log( this.props.counter.id );
     return (
       <React.Fragment>
         <div className="container">
@@ -47,7 +47,7 @@ class Counter extends Component {
             increment
           </button>
           <button
-            onClick={ this.props.handleDelete }
+            onClick={() => this.props.handleDelete(this.props.counter) }
             className="btn btn-danger ml-1"
           >
             delete

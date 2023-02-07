@@ -13,21 +13,23 @@ class Counters extends Component {
 };
     
     
-  handleDelete(counter) {
+  handleDelete = (counter) =>  {
     let CopyCounter = this.state.counters;
       let filteredCounters = CopyCounter.filter(elem => elem.id != counter.id);
       this.setState({ counters: filteredCounters });
+
   }
 
 
   render() {
     return (
       <div>
-            {this.state.counters.map((counter) => (
+            {this.state.counters.map( counter  => (
                 <Counter
                     key={counter.id}
                     value={counter.value}
-                    handleDelete={() => this.handleDelete(counter)}
+                    handleDelete={this.handleDelete}
+                    counter={ counter }
             / >
         ))}
       </div>
