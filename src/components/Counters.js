@@ -22,7 +22,7 @@ class Counters extends Component {
     let { counters } = this.state;
     let copyCounters = counters;
     let elem = copyCounters.find((elem) => elem.id == counter.id);
-    return elem.value > 0 ? elem.value : "zero";
+    return elem.value > 0 ? elem.value : `zero ${elem.value}`;
   };
 
     handleIncement = (counter) => {
@@ -51,9 +51,21 @@ class Counters extends Component {
         })
     }
 
+    handleReset = () => {
+        let copyCounters = [...this.state.counters];
+        console.log(copyCounters);
+        for (let g = 0; g < copyCounters.length; g++){
+            let objectCopy = { ...copyCounters[g] };
+            objectCopy.value = 0;
+            copyCounters[g] = objectCopy;
+        }
+        this.setState({ counters: copyCounters });
+    }
+
   render() {
     return (
-      <div>
+        <div className="container m-2">
+            <button className="btn btn-primary" onClick={this.handleReset}>reset</button>
         {this.state.counters.map((counter) => (
           <Counter
             key={counter.id}
