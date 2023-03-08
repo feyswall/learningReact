@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { getMovies } from '../services/faceServices';
 import { getMovie } from '../services/faceServices';
+import Like from "./like";
 class Movies extends Component {
 
     state = {
@@ -24,10 +25,13 @@ class Movies extends Component {
                 <td>{ movie.title }</td>
                 <td>{ movie.phone }</td>
                 <td>{ movie.numberInStock }</td>
-                <td>{ movie.registered }</td>
-                    <td>
+                <td>{movie.registered}</td>
+                <td>
+                    <Like movie={ movie } />
+                </td>
+                <td>
                     <button className="btn btn-danger btn-sm" onClick={() => { this.deleteMovie(movie._id) } }>delete</button>
-                    </td>
+                </td>
             </tr>
         });
     }

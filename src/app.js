@@ -10,9 +10,22 @@ class App extends Component {
       { id: 2, value: 4 },
       { id: 3, value: 1 },
       { id: 4, value: 3 },
-      { id: 5, value: -1 },
+      { id: 5, value: 1 },
     ],
-  };
+    };
+    
+    constructor(props) {
+        super(props);
+        console.log("App - Contructor");
+        // this.state = this.props.something
+    }
+
+    componentDidMount() {
+        // Ajax calls
+        console.log("App Mounted ");
+    }
+
+
 
   handleDelete = (counter) => {
     let CopyCounter = this.state.counters;
@@ -30,7 +43,7 @@ class App extends Component {
     handleIncement = (counter) => {
         let copyCounters = [...this.state.counters];
         let index = copyCounters.indexOf(counter);
-        copyCounters[index] = {...counter}
+        copyCounters[index] = { ...copyCounters[index] }
         copyCounters[index].value += 1;
         this.setState({
             counters: copyCounters
@@ -64,6 +77,7 @@ class App extends Component {
         this.setState({ counters: copyCounters });
     }
     render() { 
+        console.log("app rendered");
         return (
             <React.Fragment>
                 <Navigation count={ this.state.counters.filter(elem => elem.value > 0).length} />
